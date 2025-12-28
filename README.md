@@ -298,3 +298,5 @@ This project is created for educational and portfolio purposes.
 ---
 
 **Note**: This is a demonstration project. In production environments, additional security measures, database integration, and compliance with banking regulations would be necessary.
+All rights reserved.
+Copyright © 2025 Your Suraj Gupta.
