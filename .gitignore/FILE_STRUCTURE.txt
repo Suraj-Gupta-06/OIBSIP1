@@ -1,0 +1,174 @@
+ATM BANKING SYSTEM - FILE STRUCTURE
+====================================
+
+Root Directory
+--------------
+├── README.md                    # Project overview and main documentation
+├── FEATURES.md                  # Detailed feature documentation with examples
+├── INSTALLATION.md              # Installation and setup guide
+├── PROJECT_SUMMARY.md          # Quick reference and statistics
+├── GET_STARTED.md              # Quick start guide for beginners
+├── FILE_STRUCTURE.txt          # This file - complete file listing
+│
+├── compile.sh                   # Unix/Linux/Mac compilation script
+├── run.sh                       # Unix/Linux/Mac execution script
+├── compile.bat                  # Windows compilation script
+└── run.bat                      # Windows execution script
+
+Source Code Directory (src/com/atm/)
+------------------------------------
+├── ATMApplication.java          # Main entry point - User Interface Layer
+│   └── Purpose: Console UI, menu system, user interaction
+│   └── Features: Login, main menu, all operation handlers
+│   └── Lines: ~600
+│
+├── model/                       # Domain Models Package
+│   ├── Account.java             # Account entity with complete details
+│   │   └── Fields: accountNumber, userId, pin, balance, status, etc.
+│   │   └── Methods: Getters, setters, validation, transaction management
+│   │   └── Lines: ~200
+│   │
+│   ├── Transaction.java         # Transaction entity and records
+│   │   └── Fields: transactionId, type, amount, timestamp, status
+│   │   └── Methods: Transaction creation, formatting, receipts
+│   │   └── Lines: ~150
+│   │
+│   ├── AccountType.java         # Enum: SAVINGS, CURRENT, SALARY, FIXED_DEPOSIT
+│   ├── AccountStatus.java       # Enum: ACTIVE, INACTIVE, SUSPENDED, CLOSED, FROZEN
+│   ├── TransactionType.java     # Enum: DEPOSIT, WITHDRAWAL, TRANSFER, etc.
+│   └── TransactionStatus.java   # Enum: COMPLETED, PENDING, FAILED, CANCELLED
+│
+├── service/                     # Business Logic Layer
+│   └── ATMService.java          # Core business logic and validation
+│       └── Methods: login, withdraw, deposit, transfer, changePin, etc.
+│       └── Features: All validation, business rules, transaction processing
+│       └── Lines: ~500
+│
+├── repository/                  # Data Access Layer
+│   └── AccountRepository.java   # Data management and persistence
+│       └── Pattern: Singleton
+│       └── Storage: HashMap (in-memory, can be replaced with database)
+│       └── Methods: CRUD operations, authentication, data access
+│       └── Lines: ~150
+│
+├── exception/                   # Custom Exception Hierarchy
+│   ├── ATMException.java        # Base exception for all ATM errors
+│   ├── InsufficientFundsException.java
+│   ├── InvalidAccountException.java
+│   ├── AccountLockedException.java
+│   └── DailyLimitExceededException.java
+│
+└── util/                        # Utility Classes
+    ├── ValidationUtil.java      # Input validation and sanitization
+    │   └── Methods: Validate userId, PIN, account number, amount
+    │   └── Features: Format checking, weak PIN detection, masking
+    │   └── Lines: ~120
+    │
+    └── ConsoleUtil.java         # UI formatting and user interaction
+        └── Methods: Screen clearing, headers, menus, input reading
+        └── Features: Styled messages, loading animations, confirmations
+        └── Lines: ~180
+
+Compiled Output Directory (bin/) - Created after compilation
+------------------------------------------------------------
+└── com/atm/                     # Compiled .class files
+    ├── *.class                  # All compiled classes
+    └── [mirrors src structure]
+
+Documentation Files
+-------------------
+README.md           - 400+ lines
+FEATURES.md         - 600+ lines
+INSTALLATION.md     - 300+ lines
+PROJECT_SUMMARY.md  - 400+ lines
+GET_STARTED.md      - 350+ lines
+
+STATISTICS
+==========
+Total Files:        25+
+Java Source Files:  16
+Documentation:      5
+Scripts:            4
+Total Lines:        ~2,500 (code) + ~2,000 (documentation)
+
+DESIGN PATTERNS USED
+====================
+1. Singleton Pattern        - AccountRepository
+2. Repository Pattern       - Data access abstraction
+3. Service Layer Pattern    - Business logic separation
+4. MVC Pattern             - Overall architecture
+
+KEY TECHNOLOGIES
+================
+- Java 11+ (no external dependencies)
+- Object-Oriented Programming
+- Exception Handling
+- Collections Framework (HashMap, ArrayList)
+- BigDecimal for financial calculations
+- LocalDateTime for timestamps
+- Enums for type safety
+
+FEATURES IMPLEMENTED
+====================
+1. User Authentication      - User ID + PIN with security
+2. Cash Withdrawal         - With limits and validations
+3. Cash Deposit           - With maximum limits
+4. Money Transfer         - Atomic transactions
+5. Transaction History    - Complete audit trail
+6. Account Summary        - Detailed information
+7. PIN Change            - With strength validation
+
+SECURITY FEATURES
+=================
+✓ Authentication/Authorization
+✓ Account locking (3 failed attempts)
+✓ Input validation and sanitization
+✓ Transaction confirmation
+✓ Amount limits enforcement
+✓ Minimum balance requirement
+✓ Weak PIN detection
+✓ Session management
+
+SAMPLE ACCOUNTS
+===============
+User ID: user1  | PIN: 1234 | Balance: ₹50,000
+User ID: user2  | PIN: 5678 | Balance: ₹75,000
+User ID: user3  | PIN: 9012 | Balance: ₹25,000
+User ID: user4  | PIN: 3456 | Balance: ₹1,00,000
+User ID: admin  | PIN: 0000 | Balance: ₹10,00,000
+
+BUSINESS RULES
+==============
+Minimum Balance:              ₹500
+Minimum Withdrawal:           ₹100
+Maximum Withdrawal/Trans:     ₹40,000
+Daily Withdrawal Limit:       ₹50,000
+Maximum Deposit/Trans:        ₹2,00,000
+Maximum Transfer/Trans:       ₹1,00,000
+Withdrawal Denominations:     Multiples of ₹100
+Failed Login Attempts:        3 (then account locks)
+
+HOW TO USE
+==========
+1. Compile:
+   Linux/Mac: ./compile.sh
+   Windows:   compile.bat
+
+2. Run:
+   Linux/Mac: ./run.sh
+   Windows:   run.bat
+   Manual:    java -cp bin com.atm.ATMApplication
+
+3. Test:
+   Login with sample accounts above
+   Try all features
+
+PERFECT FOR
+===========
+✓ Resume Projects
+✓ Interview Demonstrations
+✓ Portfolio Showcase
+✓ Learning Java Best Practices
+✓ Understanding Software Architecture
+✓ Studying Design Patterns
+
